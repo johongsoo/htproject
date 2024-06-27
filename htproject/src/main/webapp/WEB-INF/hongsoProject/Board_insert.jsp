@@ -174,6 +174,12 @@ a{
 	border-radius: 2px;
 	font-size:1.4rem
 }
+
+.bt_wrap button.insBtn{
+	background: #000;
+	color:#fff;
+}
+
 .bt_wrap button.btn{
 	background: #ddd;
 }
@@ -302,7 +308,7 @@ a{
 		</div>
 	
 		<div class="bt_wrap">
-			<button id="insBtn" class="btn">등록</button>
+			<button id="insBtn" class="insBtn">등록</button>
 			<button id="clsBtn" class="btn">취소</button>
 		</div>
 	</div>

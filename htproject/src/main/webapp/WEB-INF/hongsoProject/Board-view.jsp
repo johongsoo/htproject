@@ -268,7 +268,7 @@ $(document).ready(function(){
 <body>
 <div class="board_wrap">
 	<div class="board_title">		
-		<strong>고객 센터 문의 게시판</strong>
+		<strong> 게시글 상세 내용</strong>
 		<p>친절하게 답변드리겠습니다</p>
 	</div>
 	<div class="board_view_wrap">

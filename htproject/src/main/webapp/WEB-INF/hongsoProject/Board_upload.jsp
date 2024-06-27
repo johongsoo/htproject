@@ -174,12 +174,12 @@ a{
 	border-radius: 2px;
 	font-size:1.4rem
 }
-.bt_wrap button.btn{
+.bt_wrap button.upt{
 	background: #000;
 	color: #fff;
 }
 
-.bt_wrap button.upt{
+.bt_wrap button.btn{
 	background: #ddd;
 }
 
@@ -280,9 +280,8 @@ a{
 
 	<div class="board_wrap">
 		<div class="board_title">
-			<strong>글 작성</strong>
-				<p>고객님들의 문의 사항을 자유롭게 남겨주세요
-				친절히 순차적으로 답변드리겠습니다.</p>
+			<strong>게시글 수정 페이지</strong>
+				<p>수정 할 내용을 적어주세요!</p>
 		</div>
 		<div class="board_write">
 			<div class="title">
