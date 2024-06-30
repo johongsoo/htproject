@@ -13,12 +13,12 @@ public class Hong_Project {
 	public String Board_main(){
 		return "Board-main";
 	}
-	//http://localhost:7080/htproject/Board_main.do
+	//http://localhost:7080/htproject/Board_view.do
 	@RequestMapping("Board_view.do")
 	public String Board_view(){
 		return "Board-view";
 	}
-	//http://localhost:7080/htproject/Board_main.do
+	//http://localhost:7080/htproject/Board_insert.do
 	@RequestMapping("Board_insert.do")
 	public String Board_insert(){
 		return "Board_insert";
@@ -29,6 +29,12 @@ public class Hong_Project {
 	@RequestMapping("Board_upload.do")
 	public String Board_upload(){
 		return "Board_upload";
+	}
+	
+	//http://localhost:7080/htproject/dispatch_page.do
+	@RequestMapping("dispatch_page.do")
+	public String dispatch_page(){
+		return "dispatch_page";
 	}
 	
 
