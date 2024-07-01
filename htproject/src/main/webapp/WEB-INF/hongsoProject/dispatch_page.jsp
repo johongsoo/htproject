@@ -106,21 +106,14 @@
 			width:15%;
 		}
 		
-		/* 게시판 목록의 조회수 열 설정 */
+		
 		.train_list .to_revise{
 			width:10%;
 		}
 		
-		/* 게시판 목록의 조회수 열 설정 */
+		
 		.train_list .to_delete{
 			width:10%;
-		}
-		
-		/* 페이지 번호 네비게이션 설정 */
-		.board_page{
-			margin-top:30px;
-			text-align:center;
-			font-size: 0;
 		}
 		
         .edit-button {

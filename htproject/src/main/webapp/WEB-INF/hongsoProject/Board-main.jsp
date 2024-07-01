@@ -138,7 +138,7 @@ a{
 .board_list > div > div{
 	display: inline-block;
 	padding: 15px 0;
-	font-size:1.4rem;
+	font-size:1rem;
 	text-align: center;
 }
 

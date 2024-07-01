@@ -36,6 +36,11 @@ public class Hong_Project {
 	public String dispatch_page(){
 		return "dispatch_page";
 	}
+	//http://localhost:7080/htproject/master_page.do
+	@RequestMapping("master_page.do")
+	public String master_page(){
+		return "master_page";
+	}
 	
 
 }
