@@ -1,9 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="java.util.*"
+    import="backweb.vo.*" 
+    import="backweb.a04_database.*" 
+    %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="utf-8"/>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,6 +189,24 @@
             background-color: #f44336;
         }
     </style>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="${path}/a00_com/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#uptBtn").click(function(){
+                location.href = "trainInsert.do";
+            });
+
+            // 추가된 코드: insBtn 클릭 이벤트 설정
+            $("#insBtn").click(function(){
+                console.log("등록 버튼이 클릭되었습니다.");
+                 location.href="trainInsert.do"
+                // 등록 버튼 클릭 시 수행할 동작을 여기에 추가합니다.
+            });
+	});
+ </script>   
 </head>
 <body>
 
@@ -226,7 +248,9 @@
 				<div class="station">${info.t_station}</div>
 			</div>
 		</c:forEach>
+		 <button class="button" id="insBtn">등록</button>	
 		</div>
+		
 
 
         <div id="modal" class="modal-overlay">
@@ -241,15 +265,18 @@
                 <button class="button" id="closebtn">닫기</button>
             </div>
          </div>
-		 <button class="button" id="insBtn">등록</button>	
+
 	
 	<div>
      <button class="button" id="btn-modal">등록</button>
-     <button class="button edit-button">수정</button>
+     <button class="button edit-button" in="uptBtn">수정</button>
      <button class="button delete-button">삭제</button>
 	</div>
 </div>
- <script>
+ <script type="text/javascript">
+
+ 
+
         const modal=document.getElementById("modal")
         function modalOn(){
             modal.style.display="flex"
