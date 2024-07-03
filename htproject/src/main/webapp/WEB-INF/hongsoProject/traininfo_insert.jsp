@@ -34,6 +34,17 @@ a{
 	color: inherit;
 }
 
+.main{
+    position: relative;
+          background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEg5uSMnTyd7fBwdGvNKbkQu6KPwUoGpm_7PAKnQ-_hSBcF3a5q5QaOcWJwRez5g8AeO7efxcl_SPU1WnFQCK5TZBsAURSO8HxSVBX32T0_i6AiSp2DvTvxYWuyw7fRh_jEVgM9Ji4v3vY5mYI1T27PEe_I_XSm_OLwSldBA9_3TeBI2HRHRn8L_iWuiNt0=w560-h215');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat; 
+         z-index: 5;
+	background-size: 1000px;
+
+}
+
 .board_wrap{
 	width:1000px;
 	margin:100px auto;
@@ -280,6 +291,7 @@ a{
 
 <body>
 	<div class="board_wrap">
+	<div class="main">
 		<div class="board_title">
 			<strong>배차 등록</strong>
 		</div>
@@ -293,44 +305,91 @@ a{
 					</dl>
 					<dl>
 						<dt>열차 종류</dt>
-						<dt><input type="text" name="t_type" placeholder="열차종류"></dt>
+						<dt><select name="t_type" value="열차종류">
+								<option>새마을호</option>
+								<option>KTX</option>
+								<option>ITX</option>
+						</select></dt>
 					</dl>
 				</div>
 				<div class="info">
 					<dl>
 						<dt>출발역</dt>
-						<dt><input type="text" name="t_depart" placeholder="출발역"></dt>
+						<dt><select name="t_depart" value="출발역">
+								<option>서울역</option>
+								<option>수원역</option>
+								<option>천안역</option>
+								<option>전주역</option>
+								<option>부산역</option>
+						</select></dt>
 					</dl>
 					<dl>
 						<dt>도착역</dt>
-						<dt><input type="text" name="t_arrive" placeholder="도착역"></dt>
+						<dt><select name="t_arrive" value="도착역">
+								<option>서울역</option>
+								<option>수원역</option>
+								<option>천안역</option>
+								<option>전주역</option>
+								<option>부산역</option>
+						</select></dt>
 					</dl>
 				</div>
 				<div class="info">
 					<dl>
 						<dt>출발시간</dt>
-						<dt><input type="text" name="t_dtime" placeholder="출발시간"></dt>
+						<dt><select name="t_dtime" value="출발시간">
+								<option>00:00</option><option>01:00</option><option>02:00</option>
+								<option>03:00</option><option>04:00</option><option>05:00</option>
+								<option>06:00</option><option>07:00</option><option>08:00</option>
+								<option>09:00</option><option>10:00</option><option>11:00</option>
+								<option>12:00</option><option>13:00</option><option>14:00</option>
+								<option>15:00</option><option>16:00</option><option>17:00</option>
+								<option>18:00</option><option>19:00</option><option>20:00</option>
+								<option>21:00</option><option>22:00</option><option>23:00</option>
+						</select></dt>
 					</dl>
 					<dl>
 						<dt>도착시간</dt>
-						<dt><input type="text" name="t_atime" placeholder="도착시간"></dt>
+						<dt><select name="t_atime" value="도착시간">
+								<option>00:00</option><option>01:00</option><option>02:00</option>
+								<option>03:00</option><option>04:00</option><option>05:00</option>
+								<option>06:00</option><option>07:00</option><option>08:00</option>
+								<option>09:00</option><option>10:00</option><option>11:00</option>
+								<option>12:00</option><option>13:00</option><option>14:00</option>
+								<option>15:00</option><option>16:00</option><option>17:00</option>
+								<option>18:00</option><option>19:00</option><option>20:00</option>
+								<option>21:00</option><option>22:00</option><option>23:00</option>
+						</select></dt>
 					</dl>
 				</div>
 				<div class="info">
 					<dl>
 						<dt>승차역</dt>
-						<dt><input type="text" name="t_station" placeholder="도착역"></dt>
+						<dt><select name="t_station" value="승차역">
+								<option>서울역</option>
+								<option>수원역</option>
+								<option>천안역</option>
+								<option>전주역</option>
+								<option>부산역</option>
+						</select></dt>
 					</dl>
 				</div>
 				<div class="bt_wrap">
 					<button type="submit" id="insBtn" class="insBtn">등록</button>
 					<button type="button" id="clsBtn" class="btn">취소</button>
+					<!-- 
+					<button  id="insBtn" class="insBtn">등록</button>
+					<button  id="clsBtn" class="btn">취소</button>
+					 400 오류 clsBtn 누를 시 배차정보리스트 페이지로 넘어 가야하지만
+					 버튼의 디폴트 값이 submit라서 위의 폼 액션의 값으로 페이지가 넘어가 오류가나온다
+					 버튼 코드에 타입을 명시해주어 js이벤트가 잘 작동 할 수있게 수정해주었다.
+					 -->
 				</div>
 				</form>
 		</div>
 		
 
-		
+	</div>		
 	</div>
 <script type="text/javascript">
 

@@ -7,6 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<%
+    String path = request.getContextPath();
+%>
 <fmt:requestEncoding value="utf-8"/>    
 <!DOCTYPE html>
 <html>
@@ -17,6 +20,9 @@
         body {
             font-family: Arial, sans-serif;
         }
+        
+        
+        
         h2 {
             text-align: center;
         }
@@ -41,14 +47,25 @@
             align-items: center;
         }
     	
-    	
+    	.main{
+		    position: relative;
+            background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEg5uSMnTyd7fBwdGvNKbkQu6KPwUoGpm_7PAKnQ-_hSBcF3a5q5QaOcWJwRez5g8AeO7efxcl_SPU1WnFQCK5TZBsAURSO8HxSVBX32T0_i6AiSp2DvTvxYWuyw7fRh_jEVgM9Ji4v3vY5mYI1T27PEe_I_XSm_OLwSldBA9_3TeBI2HRHRn8L_iWuiNt0=w560-h215');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; 
+           z-index: 5;
+			background-size: 1000px;
+		
+		}
     	
     	/* 게시판 랩(전체 게시판을 감싸는 컨테이너) 설정 */
 		.dispatch_wrap{
 			width:1000px;
 			margin:100px auto;
 			text-align:center;
+
 		}
+
 		
 		/* 게시판 랩 내부의 strong 태그 설정 */
 		.dispatch_wrap>strong{
@@ -109,70 +126,39 @@
 		
 		/* 게시판 목록의 번호 열 설정 */
 		.dispatch_list .num{
-			width:10%;
+			width:8%;
+		}
+		.dispatch_list .type{
+			width:18%;
 		}
 		
 		/* 게시판 목록의 제목 열 설정 */
 		.dispatch_list .depart{
-			width:15%;
+			width:10%;
 		}
 		
 		
 		/* 게시판 목록의 작성자 열 설정 */
 		.dispatch_list .arrive{
-			width:15%;
+			width:10%;
 		}
 		
 		/* 게시판 목록의 날짜 열 설정 */
 		.dispatch_list .dtime{
-			width:21%;
+			width:18%;
 		}
 		
 		/* 게시판 목록의 조회수 열 설정 */
 		.dispatch_list .atime{
-			width:21%;
+			width:18%;
 		}
 		/* 게시판 목록의 조회수 열 설정 */
 		.dispatch_list .station{
-			width:15%;
+			width:10%;
 		}
-		            #modal.modal-overlay {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                left: 0;
-                top: 0;
-                display: none;
-                align-items: center;
-                justify-content: center;
-                background: rgba(71, 58, 58, 0.25);     
-            }
-            #modal .modal-window {
-                background: rgba(84, 93, 99, 0.7);      
-                width: 400px;
-                height: 200px;
-                position: relative; 
-            }
-            
-            #modal .title {
-                padding-left: 10px;
-                display: inline;
-                color: white;
-                
-            }
-            #modal .title h2 {
-                display: inline;
-            }
-            
-            #modal .content {
-                margin-top: 20px;
-                padding: 0px 10px;
-                color: white;
-            }
-
 		
         .button {
-            padding: 5px 10px;
+            padding: 10px 15px;
             text-decoration: none;
             color: white;
             border: none;
@@ -181,12 +167,23 @@
         .join-button{
         	background-color: #0067A3;
         }
-		
-        .edit-button {
-            background-color: #4CAF50;
+
+        .submit-button {
+        	padding: 20px 25px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            background-color: black;
+            font-size:1.4rem;
+            cursor: pointer;
         }
-        .delete-button {
-            background-color: #f44336;
+        .btn{
+			margin-top:30px;
+			text-align:center;
+        }
+        
+        #list:hover{
+        	cursor: pointer;
         }
     </style>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -195,10 +192,7 @@
     <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#uptBtn").click(function(){
-                location.href = "trainInsert.do";
-            });
-
+ 
             // 추가된 코드: insBtn 클릭 이벤트 설정
             $("#insBtn").click(function(){
                 console.log("등록 버튼이 클릭되었습니다.");
@@ -228,10 +222,13 @@
     <input type="text" id="date" name="t_station" placeholder="승차역">
     <button class="button join-button" onclick="search()">조회</button>
 </div>
+
 	<div class="dispatch_list_wrap">
+<div class="main">
 		<div class="dispatch_list">
 			<div class="top">
 				<div class="num">번호</div>
+				<div class="type">열차종류</div>
 				<div class="depart">출발역</div>
 				<div class="arrive">도착역</div>
 				<div class="dtime">출발시간</div>
@@ -239,8 +236,9 @@
 				<div class="station">승차역</div>
 			</div>
 		<c:forEach var="info" items="${train}">
-			<div>
+			<div ondblclick="detail(${info.t_num})" id="list">
 				<div class="num">${info.t_num }</div>
+				<div class="type">${info.t_type }</div>
 				<div class="depart">${info.t_depart}</div>
 				<div class="arrive">${info.t_arrive}</div>
 				<div class="dtime">${info.t_dtime}</div>
@@ -248,53 +246,18 @@
 				<div class="station">${info.t_station}</div>
 			</div>
 		</c:forEach>
-		 <button class="button" id="insBtn">등록</button>	
 		</div>
-		
-
-
-        <div id="modal" class="modal-overlay">
-            <div class="modal-window">
-                <div class="title">
-                    <h2>제목</h2>
-                </div>
-                <div class="content">
-                    
-            	
-                </div>
-                <button class="button" id="closebtn">닫기</button>
-            </div>
-         </div>
-
-	
-	<div>
-     <button class="button" id="btn-modal">등록</button>
-     <button class="button edit-button" in="uptBtn">수정</button>
-     <button class="button delete-button">삭제</button>
-	</div>
 </div>
- <script type="text/javascript">
+</div>
+		<div class="btn">
+		 <button class="submit-button" id="insBtn">등록</button>	
+		</div>
 
- 
-
-        const modal=document.getElementById("modal")
-        function modalOn(){
-            modal.style.display="flex"
-
-        }
-        function isModalOn(){
-            return modal.style.display === "flex"
-        }
-        function modalOff() {
-            modal.style.display = "none"
-        }
-        const btnModal = document.getElementById("btn-modal")
-
-        btnModal.addEventListener("click", e => {
-                modalOn()
-            })
-
-    </script>
+	<script type="text/javascript">
+		function detail(t_num){
+			location.href="getTrain.do?t_num="+t_num
+		}
+	</script>
 
 </body>
 </html>
