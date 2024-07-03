@@ -18,6 +18,6 @@ public interface Hong_dao {
 	List<Train_info> TrainInfoList(Train_info sch);
 	
 	@Insert("INSERT INTO Train_info values(#{t_num}, #{t_type},#{t_depart},#{t_arrive}, \r\n"
-			+ "	#{t_dtime}, #{t_atime},#{t_station}")
+			+ "	#{t_dtime}, #{t_atime},#{t_station})")
 	int insertTrain(Train_info ins);
 }

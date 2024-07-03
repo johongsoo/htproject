@@ -49,15 +49,15 @@ public class Hong_Project {
 	
 	
 	//http://localhost:7080/htproject/trainInsert.do
-	@GetMapping("trainInsert.do")
+	@RequestMapping("trainInsert.do")
 	public String trainInsert() {
-		return "train_insert";
+		return "traininfo_insert";
 	}
 	
-	@PostMapping("trainInsert.do")
+	@RequestMapping("trainInsert100.do")
 	public String trainInsert(Train_info ins, Model d) {
-		d.addAttribute("msg", service.insertTrain(ins));
-		return "train_insert";
+		d.addAttribute("result", service.insertTrain(ins));
+		return "traininfo_insert";
 	}
 	
 	
