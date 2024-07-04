@@ -7,14 +7,17 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
+<%--
+
+
+ --%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<link rel="styesheet" href="Board_main_css.css">
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
 <style>
-	@charset "UTF-8";
-
 *{
 	margin: 0;
 	padding: 0;
@@ -88,11 +91,11 @@ a{
 }
 
 .board_list > div.top {
-	border-color: #999;
+	border-coler: #999;
 }
 
 .board_list > div:last-child{
-	border-bottom: 10px solid #000;
+	border-bottom: 10x solid #000;
 }
 
 .board_list > div > div{
@@ -100,6 +103,7 @@ a{
 	padding: 15px 0;
 	font-size:1.4rem;
 	text-align: center;
+
 }
 
 .board_list > div.top > div{
@@ -160,9 +164,9 @@ a{
 }
 
 .board_page a.num.on{
-	border-color: #000;
+	border-coler: #000;
 	background: #000;
-	color: #fff;
+	coloer: #fff;
 }
 
 .bt_wrap button{
@@ -174,89 +178,75 @@ a{
 	border-radius: 2px;
 	font-size:1.4rem
 }
-
-.bt_wrap button.insBtn{
-	background: #000;
-	color:#fff;
-}
-
 .bt_wrap button.btn{
-	background: #ddd;
+	background: #000;
+	color: #fff;
 }
 
 .board_page a:first-child {
 	border-left: 1px solid #ddd;
 }
 
-.board_write {
+.board_view {
+	width:100%;
 	border-top: 2px solid #000;
 }
 
-.board_write .title,
-.board_write .info{
+.board_view .title{
+	padding: 20px 15px;
+	border-bottom: 1px dashed #ddd;
+	font-size:2rem;
+}
+.board_view .info{
 	padding: 15px;
+	border-bottom : 1px solid #999;
+	/*font-size:0;*/
 }
 
-.board_write .info{
-	border-top:1px dashed #ddd;
-	border-bottom: 1px solid #000;
-	font-size:0;
-}
-
-.board_write .info dl {
+.board_view .info dl {
 	display: inline-block;
-	width: 50%;
-	vertical-align: middle;
+	padding: 0 20px;
+	position: relative;
 }
 
-.board_write .title dl{
-	font-size : 0;
+.board_view .info dl:first-child{
+	padding-left:0;
 }
 
-.board_write .title dt,
-.board_write .title dd,
-.board_write .info dt,
-	board_write .info dd{
-	display: inline-block;
-	vertical-align: middle;
-	font-size:1rem;
+.board_view .info dl::before {
+	content: "";
+	position: absolute;
+	top: 4.2px;
+	left: 0;
+	display:block;
+	width : 1px;
+	height: 13px;
+	background:#ddd;
 }
 
-.board_write .title dt,
-.board_write .info dt {
-	width: 100px;
+.board_view .info dl:first-child::before{
+	display: none;
 }
 
-.board_write .title dd{
-	width: calc(100% - 100px);
+.board_view .info dl dt,
+.board_view .info dl dd {
+	display:inline-block;
+	/*font-size:1.4rem;*/
 }
 
-
-
-
-.board_write .title input[type="text"],
-.board_write .info input[type="text"],
-.board_write .info input[type="password"]{
-	padding: 10px;
-	box-sizing: border-box;
-	width: calc(200% - 20px);
+.board_view .info dl dt{
+	
 }
-.board_write .title input[type="text"]{
 
-	width: calc(700% - 30px);
+.board_view .info dl dd{
+	margin-left:10px;
+	color: #777;
 }
-.board_write .cont {
+
+.board_view .cont {
+	padding: 15px;
 	border-bottom: 1px solid #000;
-}
-
-.board_write .cont textarea {
-	display: block;
-	width: 100%;
-	height : 500px;
-	padding : 15px;
-	box-sizing :border-box;
-	border:0;
-	resize:vertical;
+	line-height: 160%;
 }
 
 </style>
@@ -266,52 +256,54 @@ a{
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#insBtn").click(function(){
-			location.href="Board_main.do"
-		})
-		
-		$("#clsBtn").click(function(){
-			location.href="Board_main.do"
-		})
-	});
+$(document).ready(function(){
+	$("#mainBtn").click(function(){
+		location.href="BoardInfoList.do"
+	})etting 
+	 $("#uptBtn").click(function(){
+	        var postId = "${getBoerd.b_no}";
+	        location.href = "BoardUpdate.do?postId=" + postId;
+	 });
+});
 </script>
-</head>
 <body>
-
-	<div class="board_wrap">
-		<div class="board_title">
-			<strong>글 작성</strong>
-				<p>고객님들의 문의 사항을 자유롭게 남겨주세요
-				친절히 순차적으로 답변드리겠습니다.</p>
-		</div>
-		<div class="board_write">
+<div class="board_wrap">
+	<div class="board_title">		
+		<strong> 게시글 상세 내용</strong>
+		<p>친절하게 답변드리겠습니다</p>
+	</div>
+	<div class="board_view_wrap">
+		<div class="board_view">
 			<div class="title">
-				<dl>
-					<dt>제목</dt>
-					<dt><input type="text" placeholder="제목 입력"></dt>
-				</dl>
+				${getBoerd.b_title}
 			</div>
 			<div class="info">
 				<dl>
-					<dt>글쓴이</dt>
-					<dt><input type="text" placeholder="글쓴이"></dt>
+					<dt>번호</dt>
+					<dt>${getBoerd.b_no}</dt>
 				</dl>
 				<dl>
-					<dt>비밀번호</dt>
-					<dt><input type="password" placeholder="비밀번호"></dt>
+					<dt>글쓴이</dt>
+					<dt>${getBoerd.m_name}</dt>
+				</dl>
+				<dl>
+					<dt>작성일</dt>
+					<dt>${getBoerd.b_date}</dt>
+				</dl>
+				<dl>
+					<dt>조회</dt>
+					<dt>${getBoerd.b_cnt}</dt>
 				</dl>
 			</div>
 			<div class="cont">
-				<textarea placeholder="내용입력"></textarea>
+				${getBoerd.b_content}
 			</div>
 		</div>
-	
 		<div class="bt_wrap">
-			<button id="insBtn" class="insBtn">등록</button>
-			<button id="clsBtn" class="btn">취소</button>
+			<button id="mainBtn" class="btn">목록</button>
+			<button id="uptBtn">수정</button>
 		</div>
 	</div>
-	
+</div>
 </body>
 </html>

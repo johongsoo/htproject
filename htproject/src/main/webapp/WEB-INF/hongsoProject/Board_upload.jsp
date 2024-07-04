@@ -284,36 +284,29 @@ a{
 				<p>수정 할 내용을 적어주세요!</p>
 		</div>
 		<div class="board_write">
-			<div class="title">
+			<div class="info">
 				<dl>
-					<dt>제목</dt>
-					<dt><input type="text" placeholder="제목 입력">
-						제목이들어갑니다
+					<dt>게시글 고유번호</dt>
+					<dt><input type="text" value="${getboard.b_no}" readonly>
+
+					</dt>
+				</dl>
+				<dl>
+					<dt>글쓴이</dt>
+					<dt><input type="text" value="${getboard.m_name}" readonly>
 					</dt>
 				</dl>
 			</div>
-			<div class="info">
+			<div class="title">
 				<dl>
-					<dt>글쓴이</dt>
-					<dt><input type="text" placeholder="글쓴이">
-						홍길동
-					</dt>
-				</dl>
-				<dl>
-					<dt>비밀번호</dt>
-					<dt><input type="password" placeholder="비밀번호">
-						0000
+					<dt>제목</dt>
+					<dt><input type="text" value="${getboard.b_title}">
 					</dt>
 				</dl>
 			</div>
 			<div class="cont">
-				<textarea placeholder="내용입력">
-글내용이들어갑니다
-글내용이들어갑니다
-글내용이들어갑니다
-글내용이들어갑니다
-글내용이들어갑니다
-글내용이들어갑니다
+				<textarea value="${getboard.b_content}">
+
 				
 				</textarea>
 			</div>
