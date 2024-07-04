@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import htproject.P_vo.Board_info;
-import htproject.P_vo.Member_info;
 import htproject.Pdao.Board_dao;
 
 @Service
@@ -24,12 +23,10 @@ public class Board_service {
 		return dao.BoardInfoList(sch);
 	}
 	
-	public Board_info getBoerd(@Param("b_no") int b_no) {
+	public Board_info getBoerd(int b_no) {
 		return dao.getBoard(b_no);
 	} 
-	public Board_info getBoard01(@Param("b_no") int b_no) {
-		return dao.getBoard01(b_no);
-	}
+
 	
 	public String insertBoard(Board_info ins) {
 		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
@@ -41,5 +38,10 @@ public class Board_service {
 	
 	public String deleteBoard(@Param("b_no") int b_no) {
 		return dao.deleteBoard(b_no)>0?"삭제성공":"삭제실패";
+	}
+	
+	
+	public int uptb_cnt(int b_no) {
+		return dao.uptb_cnt(b_no);
 	}
 }

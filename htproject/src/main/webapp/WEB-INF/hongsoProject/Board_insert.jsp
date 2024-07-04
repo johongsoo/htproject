@@ -235,15 +235,12 @@ a{
 
 
 .board_write .title input[type="text"],
-.board_write .info input[type="text"],
-.board_write .info input[type="password"]{
+.board_write .info input[type="text"]{
 	padding: 10px;
 	box-sizing: border-box;
 	width: calc(200% - 20px);
 }
-.board_write .title input[type="text"]{
 
-	width: calc(700% - 30px);
 }
 .board_write .cont {
 	border-bottom: 1px solid #000;
@@ -266,15 +263,16 @@ a{
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#insBtn").click(function(){
-			location.href="Board_main.do"
-		})
-		
-		$("#clsBtn").click(function(){
-			location.href="Board_main.do"
-		})
-	});
+$(document).ready(function(){
+	var result = "${result}"
+	if(result!=""){
+		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
+		$("[name=b_no]").val("0")
+		$("[name=b_title]").val("")
+		$("[name=b_content]").val("")
+		//$("form")[0].reset()
+	}
+});
 </script>
 </head>
 <body>
@@ -285,33 +283,69 @@ a{
 				<p>고객님들의 문의 사항을 자유롭게 남겨주세요
 				친절히 순차적으로 답변드리겠습니다.</p>
 		</div>
+		<form action="BoardInsert100.do" method="post"">
 		<div class="board_write">
 			<div class="title">
 				<dl>
-					<dt>제목</dt>
-					<dt><input type="text" placeholder="제목 입력"></dt>
+					<dt>번호</dt>
+					<dt><input type="text" name="b_no" value="${param.b_no}" placeholder="번호"></dt>
+				</dl>
+				<dl>
+					<dt>아이디</dt>
+					<dt><input type="text" name="m_id" value="${param.m_id}" placeholder="아이디"></dt>
 				</dl>
 			</div>
 			<div class="info">
 				<dl>
-					<dt>글쓴이</dt>
-					<dt><input type="text" placeholder="글쓴이"></dt>
+					<dt>이름</dt>
+					<dt><input type="text" name="m_name" value="${param.m_name}" placeholder="이름"></dt>
 				</dl>
 				<dl>
-					<dt>비밀번호</dt>
-					<dt><input type="password" placeholder="비밀번호"></dt>
+					<dt>제목</dt>
+					<dt><input type="text" name="b_title" value="${param.b_title}" placeholder="제목"></dt>
 				</dl>
 			</div>
+			<div class="info">
+				<dl>
+					<dt>이름</dt>
+					<dt><input type="text" name="m_name" value="${param.m_name}" placeholder="이름"></dt>
+				</dl>
+				<dl>
+					<dt>등록일</dt>
+					<dt><input type="text" name="b_date" value="${param.b_date}" placeholder="비밀번호"></dt>
+				</dl>
+			</div>
+
 			<div class="cont">
-				<textarea placeholder="내용입력"></textarea>
+				<textarea placeholder="내용입력" name="b_content" value="${param.b_content}"></textarea>
+			</div>
+			<div class="info">
+				<dl>
+					<dt>d</dt>
+					<dt><input type="text" name="b_cnt" value="${param.b_cnt}" placeholder="d"></dt>
+				</dl>
 			</div>
 		</div>
-	
+		
+		
 		<div class="bt_wrap">
-			<button id="insBtn" class="insBtn">등록</button>
-			<button id="clsBtn" class="btn">취소</button>
+			<button type="submit" id="insBtn" class="insBtn">등록</button>
+			<button type="button" id="clsBtn" class="btn">취소</button>
 		</div>
+	</form>	
 	</div>
+		<script type="text/javascript">
+
+
+		$("#insBtn").click(function(){
+			if(confirm("등록하시겠습니까?")){
+				$("form").submit()
+			}
+		})
+		$("#clsBtn").click(function(){
+			location.href="BoardInfoList.do"
+		})
 	
+	</script>
 </body>
 </html>

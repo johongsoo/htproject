@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import htproject.P_vo.Board_info;
-import htproject.P_vo.Member_info;
 import htproject.Pservice.Board_service;
 
 @Controller
@@ -23,15 +22,10 @@ public class Board_project {
 	}
 	@RequestMapping("getBoard.do")
 	public String getBoard(@RequestParam("b_no") int b_no, Model d){
-		d.addAttribute("getBoerd", service.getBoerd(b_no));
+		d.addAttribute("getboard", service.getBoerd(b_no));
 		return "Board_view";
 	}
 	
-	@RequestMapping("getBoard01.do")
-	public String getBoard01(@RequestParam("b_no") int b_no, Model d){
-		d.addAttribute("getBoerd", service.getBoard01(b_no));
-		return "Board_upload";
-	}
 	
 	//http://localhost:7080/htproject/BoardInsert.do
 	@RequestMapping("BoardInsert.do")
@@ -44,6 +38,8 @@ public class Board_project {
 		d.addAttribute("result", service.insertBoard(ins));
 		return "Board_insert";
 	}
+	
+ 
 	
 	// http://localhost:7080/springweb/BoardUpdate.do
 	@RequestMapping("BoardUpdate.do")

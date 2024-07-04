@@ -25,13 +25,14 @@ public interface Board_dao {
 			+ "	where b_no = #{b_no}")
 	Board_info getBoard(@Param("b_no") int b_no);
 	
-	@Select("select *\r\n"
-			+ "	from board_info\r\n"
-			+ "	where b_no = #{b_no}")
-	Board_info getBoard01(@Param("b_no") int b_no);
+	@Select("select * from board where b_no = #{b_no}")
+	Board_info getBoardinfo(@Param("b_no") int b_no );
+	
+	@Select("select fname from boardfile where no = #{no}")
+	List<String> getFiles(@Param("no") int no);
 	
 	@Insert("INSERT INTO Board_info values(#{b_no}, #{m_id},#{m_name},#{b_title}, \r\n"
-			+ "	#{b_date}, #{b_content})")
+			+ "	#{b_date}, #{b_content},#{b_cnt})")
 	int insertBoard(Board_info ins);
 	
 	@Update("UPDATE Board_INFO \r\n"
@@ -45,6 +46,12 @@ public interface Board_dao {
 			+ "FROM Board_info\r\n"
 			+ "WHERE b_no = #{b_no}")
 	int deleteBoard(@Param("b_no") int b_no);
+	
+	@Update("update board\r\n"
+			+ "   set b_cnt = b_cnt + 1\r\n"
+			+ "where b_no = #{b_no}")
+	int uptb_cnt(@Param("b_no") int b_no);
+	
 }
 
 

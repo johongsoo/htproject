@@ -233,7 +233,7 @@ a{
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#insBtn").click(function(){
-			location.href="Board_insert.do"
+			location.href="BoardInsert.do"
 		})
 	});
 </script>

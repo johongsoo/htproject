@@ -259,11 +259,16 @@ a{
 $(document).ready(function(){
 	$("#mainBtn").click(function(){
 		location.href="BoardInfoList.do"
-	})etting 
-	 $("#uptBtn").click(function(){
-	        var postId = "${getBoerd.b_no}";
-	        location.href = "BoardUpdate.do?postId=" + postId;
-	 });
+	})
+	var msg = "${msg}"
+		if(msg!=""){
+			alert(msg)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
+			var proc = "${proc}"
+			if(proc == 'del'){
+				location.href="BoardInfoList.do"
+			}
+				
+}
 });
 </script>
 <body>
@@ -273,37 +278,54 @@ $(document).ready(function(){
 		<p>친절하게 답변드리겠습니다</p>
 	</div>
 	<div class="board_view_wrap">
+		<form method="post">
 		<div class="board_view">
+		
 			<div class="title">
-				${getBoerd.b_title}
+				${getboard.b_title}
+				<input type="hidden" name="title" value="${getboard.b_title}">
 			</div>
 			<div class="info">
 				<dl>
 					<dt>번호</dt>
-					<dt>${getBoerd.b_no}</dt>
+					<dt>${getboard.b_no}</dt>
+					<input type="hidden" name="b_no" value="${getboard.b_no}">
 				</dl>
 				<dl>
 					<dt>글쓴이</dt>
-					<dt>${getBoerd.m_name}</dt>
+					<dt>${getboard.m_name}</dt>
+					<input type="hidden" name="m_name" value="${getboard.m_name}">
 				</dl>
 				<dl>
 					<dt>작성일</dt>
-					<dt>${getBoerd.b_date}</dt>
+					<dt>${getboard.b_date}</dt>
 				</dl>
 				<dl>
 					<dt>조회</dt>
-					<dt>${getBoerd.b_cnt}</dt>
+					<dt>${getboard.b_cnt}</dt>
 				</dl>
 			</div>
 			<div class="cont">
-				${getBoerd.b_content}
+				${getboard.b_content}
+				<input type="hidden" name="b_content" value="${getboard.b_content}">
 			</div>
 		</div>
 		<div class="bt_wrap">
-			<button id="mainBtn" class="btn">목록</button>
-			<button id="uptBtn">수정</button>
+			<button type="button" id="mainBtn" class="btn">목록</button>
+			<button type="button" id="uptBtn">수정</button>
+			<button type="button" id="delBtn" >삭제</button>
 		</div>
+	</form>
 	</div>
+	<script type="text/javascript">
+	 $("#uptBtn").click(function(){
+	        location.href = "BoardUpdate.do?b_no=" + $("[name=b_no]").val();
+	 });
+		$("#delBtn").click(function(){
+			location.href="deleteBoard.do?b_no="+$("[name=b_no]").val();
+		})	
+	
+	</script>
 </div>
 </body>
 </html>
