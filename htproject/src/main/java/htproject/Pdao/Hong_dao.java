@@ -22,14 +22,14 @@ public interface Hong_dao {
 			+ "AND t_station like '%'||#{t_station}||'%' ")
 	List<Train_info> TrainInfoList(Train_info sch);
 	
-	@Insert("INSERT INTO Train_info values(#{t_num}, #{t_type},#{t_depart},#{t_arrive}, \r\n"
-			+ "	#{t_dtime}, #{t_atime},#{t_station})")
-	int insertTrain(Train_info ins);
-	
 	@Select("select *\r\n"
 			+ "	from TRAIN_INFO\r\n"
 			+ "	where t_num = #{t_num}")
 	Train_info getTrain(@Param("t_num") int t_num);
+	
+	@Insert("INSERT INTO Train_info values(#{t_num}, #{t_type},#{t_depart},#{t_arrive}, \r\n"
+			+ "	#{t_dtime}, #{t_atime},#{t_station})")
+	int insertTrain(Train_info ins);
 	
 	@Update("UPDATE TRAIN_INFO \r\n"
 			+ "	SET t_type = #{t_type},\r\n"
@@ -47,6 +47,8 @@ public interface Hong_dao {
 	int deleteTrain(@Param("t_num") int t_num);
 
 	
+
+	
 	@Select("SELECT * \r\n"
 			+ "FROM member_info \r\n"
 			+ "WHERE m_id like '%'||#{m_id}||'%' \r\n"
@@ -57,6 +59,10 @@ public interface Hong_dao {
 			+ "	from member_info\r\n"
 			+ "	where m_unique = #{m_unique}")
 	Member_info getMember(@Param("m_unique") int m_unique);
+	
+	@Insert("INSERT INTO Member_info values(#{m_unique}, #{m_id},#{m_authority},#{m_pwd}, \r\n"
+			+ "	#{m_name}, #{m_age},#{m_email},#{m_number})")
+	int insertMember(Member_info ins);
 	
 	@Update("UPDATE member_info \r\n"
 			+ "	SET m_id = #{m_id},\r\n"
@@ -75,13 +81,5 @@ public interface Hong_dao {
 	int deleteMember(@Param("m_unique") int m_unique);
 	
 	
-	@Select("SELECT * \r\n"
-			+ "FROM board_info \r\n"
-			+ "WHERE m_name like '%'||#{m_name}||'%' \r\n"
-			+ "AND b_title like '%'||#{b_title}||'%' ")
-	List<Board_info> BoardInfoList(Board_info sch);
 	
-	@Insert("INSERT INTO Member_info values(#{m_unique}, #{m_id},#{m_authority},#{m_pwd}, \r\n"
-			+ "	#{m_name}, #{m_age},#{m_email},#{m_number})")
-	int insertMember(Member_info ins);
 }

@@ -71,15 +71,6 @@ public class Hong_service {
 		return dao.deleteMember(m_unique)>0?"삭제성공":"삭제실패";
 	}
 	
-	
-	public List<Board_info> BoardInfoList(Board_info sch){
-		if(sch.getM_name()==null) sch.setM_name("");
-		if(sch.getB_title()==null) sch.setB_title("");
-		
-		sch.setM_name("%"+sch.getM_name()+"%");
-		sch.setB_title("%"+sch.getB_title()+"%");
-		
-		return dao.BoardInfoList(sch);
-	}
+
 
 }

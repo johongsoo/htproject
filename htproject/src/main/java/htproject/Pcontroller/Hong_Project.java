@@ -17,28 +17,6 @@ public class Hong_Project {
 	@Autowired(required=false)
 	private Hong_service service;
 	
-	//http://localhost:7080/htproject/Board_main.do
-	@RequestMapping("Board_main.do")
-	public String Board_main(){
-		return "Board-main";
-	}
-	//http://localhost:7080/htproject/Board_view.do
-	@RequestMapping("Board_view.do")
-	public String Board_view(){
-		return "Board-view";
-	}
-	//http://localhost:7080/htproject/Board_insert.do
-	@RequestMapping("Board_insert.do")
-	public String Board_insert(){
-		return "Board_insert";
-	}
-	
-	
-	//http://localhost:7080/htproject/Board_upload.do
-	@RequestMapping("Board_upload.do")
-	public String Board_upload(){
-		return "Board_upload";
-	}
 	
 	//http://localhost:7080/htproject/traininfolist.do
 	@RequestMapping("traininfolist.do")
@@ -47,6 +25,11 @@ public class Hong_Project {
 		return "traininfo";
 	}
 	
+	@RequestMapping("getTrain.do")
+	public String getTrain(@RequestParam("t_num") int t_num, Model d){
+		d.addAttribute("gettrain", service.getTrain(t_num));
+		return "traininfo_detail";
+	}	
 	
 	//http://localhost:7080/htproject/trainInsert.do
 	@RequestMapping("trainInsert.do")
@@ -60,11 +43,6 @@ public class Hong_Project {
 		return "traininfo_insert";
 	}
 	
-	@RequestMapping("getTrain.do")
-	public String getTrain(@RequestParam("t_num") int t_num, Model d){
-		d.addAttribute("gettrain", service.getTrain(t_num));
-		return "traininfo_detail";
-	}
 	
 	// http://localhost:7080/springweb/trainUpdate.do
 	@RequestMapping("trainUpdate.do")
@@ -86,11 +64,7 @@ public class Hong_Project {
 	
 	
 	
-	
-	
-	
-	
-	
+		
 	
 	
 	//http://localhost:7080/htproject/master_page.do
@@ -98,6 +72,12 @@ public class Hong_Project {
 	public String master_page(Member_info sch, Model d){
 		d.addAttribute("mlist", service.MemberInfoList(sch));
 		return "master_page";
+	}
+	
+	@RequestMapping("getMember.do")
+	public String getMember(@RequestParam("m_unique") int m_unique, Model d){
+		d.addAttribute("getmember", service.getMember(m_unique));
+		return "master_detail";
 	}
 	
 	//http://localhost:7080/htproject/memberInsert.do
@@ -110,13 +90,6 @@ public class Hong_Project {
 	public String trainInsert(Member_info ins, Model d) {
 		d.addAttribute("result", service.insertMember(ins));
 		return "member_insert";
-	}
-	
-	
-	@RequestMapping("getMember.do")
-	public String getMember(@RequestParam("m_unique") int m_unique, Model d){
-		d.addAttribute("getmember", service.getMember(m_unique));
-		return "master_detail";
 	}
 	
 	// http://localhost:7080/springweb/memberUpdate.do
