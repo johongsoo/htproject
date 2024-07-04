@@ -193,11 +193,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
  
-            // 추가된 코드: insBtn 클릭 이벤트 설정
             $("#insBtn").click(function(){
-                console.log("등록 버튼이 클릭되었습니다.");
+                console.log("배차 등록 페이지로이동.");
                  location.href="trainInsert.do"
-                // 등록 버튼 클릭 시 수행할 동작을 여기에 추가합니다.
             });
 	});
  </script>   
@@ -209,18 +207,21 @@
 </div>
 
 <div class="search-box">
-    <label for="t_num">열차 번호 :</label>
-    <input type="text" id="trainNumber" name="t_num" placeholder="0">
-    <button class="button join-button" onclick="search()">조회</button>
+	<form>
     <label for="t_depart">출발지 :</label>
-    <input type="text" id="departureStation" name="t_depart" placeholder="출발지">
+    <input type="text" id="departureStation" name="t_depart" value="${param.t_depart}" placeholder="출발지">
     <button class="button join-button" onclick="search()">조회</button>
+    </form>
+    <form>
     <label for="t_arrive">도착지 :</label>
-    <input type="text" id="arrivalStation" name="t_arrive" placeholder="도착지">
+    <input type="text" id="arrivalStation" name="t_arrive" value="${param.t_arrive}" placeholder="도착지">
     <button class="button join-button" onclick="search()">조회</button>
+    </form>
+    <form>
     <label for="t_station">승차역 :</label>
-    <input type="text" id="date" name="t_station" placeholder="승차역">
+    <input type="text" id="date" name="t_station" value="${param.t_station}" placeholder="승차역">
     <button class="button join-button" onclick="search()">조회</button>
+    </form>
 </div>
 
 	<div class="dispatch_list_wrap">
@@ -254,6 +255,7 @@
 		</div>
 
 	<script type="text/javascript">
+	
 		function detail(t_num){
 			location.href="getTrain.do?t_num="+t_num
 		}

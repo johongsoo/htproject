@@ -68,6 +68,9 @@ public class Hong_Project {
 	
 	
 	//http://localhost:7080/htproject/master_page.do
+	
+	
+//	회원 등록과 배차등록의 셀렉 인설트 컨트롤/서비스는 거의비슥하다
 	@RequestMapping("master_page.do")
 	public String master_page(Member_info sch, Model d){
 		d.addAttribute("mlist", service.MemberInfoList(sch));
@@ -80,7 +83,9 @@ public class Hong_Project {
 		return "master_detail";
 	}
 	
-	//http://localhost:7080/htproject/memberInsert.do
+
+
+//  등록에 관한 컨트롤러	
 	@RequestMapping("memberInsert.do")
 	public String memberInsert() {
 		return "member_insert";
@@ -92,17 +97,16 @@ public class Hong_Project {
 		return "member_insert";
 	}
 	
-	// http://localhost:7080/springweb/memberUpdate.do
+//	업데이트에 관한 매핑
 	@RequestMapping("memberUpdate.do")
 	public String memberUpdate(Member_info upt, Model d) {
 		
 		d.addAttribute("msg", service.updateMember(upt));
-		d.addAttribute("getmember", service.getMember(upt.getM_unique())); // 수정후, 수정된 내용 확인..
+		d.addAttribute("getmember", service.getMember(upt.getM_unique())); 
 		
 		return "master_detail"; 
 	}
-	
-	// http://localhost:7080/springweb/memberDelete.do   
+//  삭제에 관한 매핑	 
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(@RequestParam("m_unique") int m_unique, Model d) {
 		d.addAttribute("msg", service.deleteMember(m_unique));

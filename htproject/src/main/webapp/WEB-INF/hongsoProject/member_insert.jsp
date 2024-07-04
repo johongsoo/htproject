@@ -254,6 +254,7 @@ a{
 .board_write .title input[type="text"],
 .board_write .info input[type="number"],
 .board_write .info input[type="text"],
+.board_write .info input[type="email"],
 .board_write .info select{
 	padding: 10px;
 	box-sizing: border-box;
@@ -293,19 +294,19 @@ a{
 	<div class="board_wrap">
 	<div class="main">
 		<div class="board_title">
-			<strong>배차 등록</strong>
+			<strong>회원	 등록</strong>
 		</div>
 			<div class="board_write">
 				<form method="post" action="member_insert100.do">
 				<div class="info">
 			
 					<dl>
-						<dt>고유아이디</dt>
-						<dt><input type="number" name="m_unique" placeholder="고유아이디"></dt>
+						<dt>고유번호</dt>
+						<dt><input type="number" name="m_unique" placeholder="고유번호"></dt>
 					</dl>
 					<dl>
 						<dt>아이디</dt>
-						<dt><input type="text" name="m_id" placeholder="고유아이디"></dt>
+						<dt><input type="text" name="m_id" placeholder="아이디"></dt>
 					</dl>
 				</div>
 				<div class="info">

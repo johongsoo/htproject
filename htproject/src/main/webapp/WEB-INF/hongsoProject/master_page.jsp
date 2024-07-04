@@ -189,15 +189,17 @@
 <body>
 
 <div id="top-lign">
-<h2>배차 정보 관리</h2>
+<h2>회원 정보 관리</h2>
 </div>
 
 <div class="search-box">
+	<form>
     <label for="m_id">아이디 :</label>
     <input type="text" id="m_id" name="m_id" placeholder="">
     <label for="m_name">이름 :</label>
     <input type="text" id="m_name" name="m_name" placeholder="">
     <button class="button join-button" onclick="search()">조회</button>
+    </form>
 </div>
 	<div class="dispatch_list_wrap">
 		<div class="dispatch_list">

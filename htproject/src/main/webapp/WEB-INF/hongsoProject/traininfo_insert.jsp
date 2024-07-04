@@ -270,7 +270,10 @@ a{
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+$(document).ready(function(){
+		
+		
+		배차 등록에 관한 주요코드
 		$("#insBtn").click(function(){
 			if(confirm("등록하시겠습니까?")){
 				$("form").submit()
@@ -280,12 +283,12 @@ a{
 			alert("이동");
 			location.href="${path}/traininfolist.do";
 		})
-	});
-	var result = "${result}"
-	if(result!=""){
-		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
+});
+		var result = "${result}"
+			if(result!=""){
+			alert(result)
 		
-	}
+		}
 </script>
 </head>
 
@@ -300,7 +303,7 @@ a{
 				<div class="info">
 			
 					<dl>
-						<dt>번호</dt>
+						<dt>열차 번호</dt>
 						<dt><input type="number" name="t_num" placeholder="번호"></dt>
 					</dl>
 					<dl>

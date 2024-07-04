@@ -27,15 +27,17 @@ public class Board_service {
 		return dao.getBoard(b_no);
 	} 
 
-	
+//  등록에 관한 서비스파일
 	public String insertBoard(Board_info ins) {
 		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
 	}
 	
+	
+	
+//	수정 삭제에 관한 서비스파일
 	public String updateBoard(Board_info upt) {
 			return dao.updateBoard(upt)>0?"수정성공":"수정실패";
 	}
-	
 	public String deleteBoard(@Param("b_no") int b_no) {
 		return dao.deleteBoard(b_no)>0?"삭제성공":"삭제실패";
 	}

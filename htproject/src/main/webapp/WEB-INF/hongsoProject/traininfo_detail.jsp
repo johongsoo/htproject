@@ -299,15 +299,15 @@ a{
 	<div class="board_wrap">
 	<div class="main">
 		<div class="board_title">
-			<strong>배차 등록</strong>
+			<strong>열차 정보 수정</strong>
 		</div>
 			<div class="board_write">
 				<form method="post" action="trainInsert100.do">
 				<div class="info">
 			
-					<dl>
-						<dt>번호</dt>
-						<dt><input type="number" name="t_num" value="${gettrain.t_num }"></dt>
+					<dl> 
+						<dt>열차번호</dt>
+						<dt><input type="number" name="t_num" value="${gettrain.t_num }" readonly></dt>
 					</dl>
 					<dl>
 						<dt>열차 종류</dt>
@@ -398,29 +398,19 @@ a{
 	</div>
 	</div>
 <script type="text/javascript">
+
+		수정 삭제 취소 주요코드
 	    $("#uptBtn").click(function(){
 	    	if(confirm("수정하시겠습니까?")){
-				// 유효성 check 필요시 처리..  trainUpdate.do
 				$("form").attr("action","trainUpdate.do");
 				$("form").submit();	  
-				// $("form")[0].reset() 반드시 배열로 선언해야 처리가 된다.(초기화시)  		
-				// $("form")[0].submit() $("form").submit() 둘다 사용가능..		
 	    	}
 	    })
 	    $("#delBtn").click(function(){
-	    	if(confirm("삭제하시겠습니까?")){
-				// 유효성 check 필요시 처리..
-				/*
-				$("form").attr("action","deleteEmp.do");
-				$("form")[0].submit();   document.querySelector("form").submit();
-				*/	    	
+	    	if(confirm("삭제하시겠습니까?")){  	
 				location.href="trainDelete.do?t_num="+$("[name=t_num]").val()	
 	    	}
 	    })	 
-    
-    
-
-	
 		$("#clsBtn").click(function(){
 			location.href="traininfolist.do"
 		})

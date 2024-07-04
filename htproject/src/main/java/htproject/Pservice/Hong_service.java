@@ -44,6 +44,9 @@ public class Hong_service {
 		return dao.deleteTrain(t_num)>0?"삭제성공":"삭제실패";
 	}
 	
+		
+	
+	
 	public List<Member_info> MemberInfoList(Member_info sch){
 		if(sch.getM_id()==null) sch.setM_id("");
 		if(sch.getM_name()==null) sch.setM_name("");
