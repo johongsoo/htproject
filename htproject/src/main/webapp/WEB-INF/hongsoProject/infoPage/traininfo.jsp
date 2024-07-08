@@ -54,7 +54,7 @@
             background-position: center;
             background-repeat: no-repeat; 
            z-index: 5;
-			background-size: 1000px;
+			background-size: 800px;
 		
 		}
     	
@@ -90,6 +90,7 @@
     	/* 게시판 목록 설정 */
 		.dispatch_list {
 			width: 70%;
+			border:1px solid #000;
 			border-top: 2px solid #000;
 		    position:relative;
 		    left:15%;
@@ -156,7 +157,10 @@
 		.dispatch_list .station{
 			width:10%;
 		}
-		
+		.hover:hover{
+			opacity:0.8;
+			border:1px solid skyblue;
+		}
         .button {
             padding: 10px 15px;
             text-decoration: none;
@@ -211,13 +215,9 @@
     <label for="t_depart">출발지 :</label>
     <input type="text" id="departureStation" name="t_depart" value="${param.t_depart}" placeholder="출발지">
     <button class="button join-button" onclick="search()">조회</button>
-    </form>
-    <form>
     <label for="t_arrive">도착지 :</label>
     <input type="text" id="arrivalStation" name="t_arrive" value="${param.t_arrive}" placeholder="도착지">
     <button class="button join-button" onclick="search()">조회</button>
-    </form>
-    <form>
     <label for="t_station">승차역 :</label>
     <input type="text" id="date" name="t_station" value="${param.t_station}" placeholder="승차역">
     <button class="button join-button" onclick="search()">조회</button>
@@ -237,7 +237,7 @@
 				<div class="station">승차역</div>
 			</div>
 		<c:forEach var="info" items="${train}">
-			<div ondblclick="detail(${info.t_num})" id="list">
+			<div class="hover" ondblclick="detail(${info.t_num})" id="list">
 				<div class="num">${info.t_num }</div>
 				<div class="type">${info.t_type }</div>
 				<div class="depart">${info.t_depart}</div>

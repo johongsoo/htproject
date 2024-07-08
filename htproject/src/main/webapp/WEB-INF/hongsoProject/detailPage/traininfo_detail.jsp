@@ -36,15 +36,14 @@ a{
 
 .main{
     position: relative;
-          background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEg5uSMnTyd7fBwdGvNKbkQu6KPwUoGpm_7PAKnQ-_hSBcF3a5q5QaOcWJwRez5g8AeO7efxcl_SPU1WnFQCK5TZBsAURSO8HxSVBX32T0_i6AiSp2DvTvxYWuyw7fRh_jEVgM9Ji4v3vY5mYI1T27PEe_I_XSm_OLwSldBA9_3TeBI2HRHRn8L_iWuiNt0=w560-h215');
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat; 
-         z-index: 5;
+    background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEg5uSMnTyd7fBwdGvNKbkQu6KPwUoGpm_7PAKnQ-_hSBcF3a5q5QaOcWJwRez5g8AeO7efxcl_SPU1WnFQCK5TZBsAURSO8HxSVBX32T0_i6AiSp2DvTvxYWuyw7fRh_jEVgM9Ji4v3vY5mYI1T27PEe_I_XSm_OLwSldBA9_3TeBI2HRHRn8L_iWuiNt0=w560-h215');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+   z-index: 5;
 	background-size: 1000px;
 
 }
-
 .board_wrap{
 	width:1000px;
 	margin:100px auto;
@@ -191,8 +190,12 @@ a{
 	font-size:1.4rem
 }
 
-.bt_wrap button.insBtn{
-	background: #000;
+.bt_wrap button.uptBtn{
+	background: #81c147;
+	color:#fff;
+}
+.bt_wrap button.delBtn{
+	background: #ff2e16;
 	color:#fff;
 }
 
@@ -270,25 +273,25 @@ a{
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-		
-		
-		배차 등록에 관한 주요코드
-		$("#insBtn").click(function(){
-			if(confirm("등록하시겠습니까?")){
+	$(document).ready(function(){
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
 				$("form").submit()
 			}
 		})
-		$("#clsBtn").click(function(){
+		$("#delBtn").click(function(){
 			alert("이동");
 			location.href="${path}/traininfolist.do";
 		})
-});
-		var result = "${result}"
-			if(result!=""){
-			alert(result)
-		
+	});
+	var msg = "${msg}"
+	var proc = "${proc}"
+	if(msg!=""){
+		if(proc=="삭제"){
+			alert("조회화면이동");
+			location.href="traininfolist.do"
 		}
+	}
 </script>
 </head>
 
@@ -296,19 +299,19 @@ $(document).ready(function(){
 	<div class="board_wrap">
 	<div class="main">
 		<div class="board_title">
-			<strong>배차 등록</strong>
+			<strong>열차 정보 수정</strong>
 		</div>
 			<div class="board_write">
 				<form method="post" action="trainInsert100.do">
 				<div class="info">
 			
-					<dl>
-						<dt>열차 번호</dt>
-						<dt><input type="number" name="t_num" placeholder="번호"></dt>
+					<dl> 
+						<dt>열차번호</dt>
+						<dt><input type="number" name="t_num" value="${gettrain.t_num }" readonly></dt>
 					</dl>
 					<dl>
 						<dt>열차 종류</dt>
-						<dt><select name="t_type" value="열차종류">
+						<dt><select name="t_type" value="${gettrain.t_type }">
 								<option>새마을호</option>
 								<option>KTX</option>
 								<option>ITX</option>
@@ -318,7 +321,7 @@ $(document).ready(function(){
 				<div class="info">
 					<dl>
 						<dt>출발역</dt>
-						<dt><select name="t_depart" value="출발역">
+						<dt><select name="t_depart" value="${gettrain.t_depart }">
 								<option>서울역</option>
 								<option>수원역</option>
 								<option>천안역</option>
@@ -328,7 +331,7 @@ $(document).ready(function(){
 					</dl>
 					<dl>
 						<dt>도착역</dt>
-						<dt><select name="t_arrive" value="도착역">
+						<dt><select name="t_arrive" value="${gettrain.t_arrive }">
 								<option>서울역</option>
 								<option>수원역</option>
 								<option>천안역</option>
@@ -340,7 +343,7 @@ $(document).ready(function(){
 				<div class="info">
 					<dl>
 						<dt>출발시간</dt>
-						<dt><select name="t_dtime" value="출발시간">
+						<dt><select name="t_dtime" value="${gettrain.t_dtime }">
 								<option>00:00</option><option>01:00</option><option>02:00</option>
 								<option>03:00</option><option>04:00</option><option>05:00</option>
 								<option>06:00</option><option>07:00</option><option>08:00</option>
@@ -353,7 +356,7 @@ $(document).ready(function(){
 					</dl>
 					<dl>
 						<dt>도착시간</dt>
-						<dt><select name="t_atime" value="도착시간">
+						<dt><select name="t_atime" value="${gettrain.t_atime }">
 								<option>00:00</option><option>01:00</option><option>02:00</option>
 								<option>03:00</option><option>04:00</option><option>05:00</option>
 								<option>06:00</option><option>07:00</option><option>08:00</option>
@@ -368,7 +371,7 @@ $(document).ready(function(){
 				<div class="info">
 					<dl>
 						<dt>승차역</dt>
-						<dt><select name="t_station" value="승차역">
+						<dt><select name="t_station" value="${gettrain.t_station }">
 								<option>서울역</option>
 								<option>수원역</option>
 								<option>천안역</option>
@@ -378,7 +381,8 @@ $(document).ready(function(){
 					</dl>
 				</div>
 				<div class="bt_wrap">
-					<button type="submit" id="insBtn" class="insBtn">등록</button>
+					<button type="submit" id="uptBtn" class="udBtn">수정</button>
+					<button type="button" id="delBtn" class="udBtn">삭제</button>
 					<button type="button" id="clsBtn" class="btn">취소</button>
 					<!-- 
 					<button  id="insBtn" class="insBtn">등록</button>
@@ -391,11 +395,26 @@ $(document).ready(function(){
 				</form>
 		</div>
 		
-
-	</div>		
+	</div>
 	</div>
 <script type="text/javascript">
 
-</script>
+
+	    $("#uptBtn").click(function(){
+	    	if(confirm("수정하시겠습니까?")){
+				$("form").attr("action","trainUpdate.do");
+				$("form").submit();	  
+	    	}
+	    })
+	    $("#delBtn").click(function(){
+	    	if(confirm("삭제하시겠습니까?")){  	
+				location.href="trainDelete.do?t_num="+$("[name=t_num]").val()	
+	    	}
+	    })	 
+		$("#clsBtn").click(function(){
+			location.href="traininfolist.do"
+		})
+	
+	</script>
 </body>
 </html>
