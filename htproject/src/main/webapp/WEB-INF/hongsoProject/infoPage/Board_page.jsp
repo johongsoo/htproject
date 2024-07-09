@@ -189,7 +189,7 @@
         $(document).ready(function(){
  
             $("#insBtn").click(function(){
-                console.log("배차 등록 페이지로이동.");
+            	alert("배차 등록 페이지로이동.");
                  location.href="BoardInsert.do"
             });
 	});
@@ -226,7 +226,6 @@
 				<div class="title">${b.b_title}</div>
 				<div class="writer">${b.m_name}</div>>
 				<div class="date">${b.b_date}</div>
-				<div><fmt:formatDate value="${b.b_cnt}"/></div>
 				<div class="views">${b.b_cnt}</div>
 			</div>
 		</c:forEach>

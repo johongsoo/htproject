@@ -267,11 +267,21 @@ $(document).ready(function(){
 	var result = "${result}"
 	if(result!=""){
 		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
-		$("[name=b_no]").val("0")
-		$("[name=b_title]").val("")
-		$("[name=b_content]").val("")
 		//$("form")[0].reset()
 	}
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // 현재 날짜 가져오기
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    var year = today.getFullYear();
+
+    // yyyy-mm-dd 형식으로 날짜 설정
+    var currentDate = year + '-' + month + '-' + day;
+
+    // input 요소에 현재 날짜 설정
+    document.querySelector('input[name="b_date"]').value = currentDate;
 });
 </script>
 </head>
@@ -288,28 +298,36 @@ $(document).ready(function(){
 			<div class="info">	
 				 <dl>
 					<dt>번호</dt>
-					<dt><input type="text" name="b_no" value="${param.b_no}" placeholder="번호"></dt>
+					<dt><input type="text" name="b_no" value="" placeholder="번호"></dt>
+				</dl>
+				<dl>
+					<dt>아이디</dt>
+					<dt><input type="text" name="m_id" value="" placeholder="아이디"></dt>
 				</dl>
 			</div>	
 			<div class="title">
 				<dl>
+					<dt>이름</dt>
+					<dt><input type="text" name="m_name" value="" placeholder="이름"></dt>
+				</dl>
+				<dl>
 					<dt>제목</dt>
-					<dt><input type="text" name="b_title" value="${param.b_title}" placeholder="제목"></dt>
+					<dt><input type="text" name="b_title" value="" placeholder="제목"></dt>
 				</dl>
 			</div>
 			<div class="info">
 				<dl>
-					<dt>이름</dt>
-					<dt><input type="text" name="m_name" value="${param.m_name}" placeholder="이름"></dt>
+					<dt>조회수</dt>
+					<dt><input type="text" name="b_cnt" value="0" placeholder="조회수" readonly></dt>
 				</dl>
 				<dl>
-					<dt>조회수</dt>
-					<dt><input type="text" name="b_cnt" value="${param.b_cnt}" placeholder="조회수"></dt>
+					<dt>날짜</dt>
+					<dt><input type="date" name="b_date" readonly></dt>
 				</dl>
 			</div>
 
 			<div class="cont">
-				<textarea placeholder="내용입력" name="b_content" value="${param.b_content}" ></textarea>
+				<textarea placeholder="내용입력" name="b_content"></textarea>
 			</div>
 
 		</div>
@@ -322,16 +340,16 @@ $(document).ready(function(){
 	</form>	
 	</div>
 		<script type="text/javascript">
-
-
 		$("#insBtn").click(function(){
 			if(confirm("등록하시겠습니까?")){
 				$("form").submit()
 			}
 		})
 		$("#clsBtn").click(function(){
+			alert("게시판으로 이동")
 			location.href="Boardlist.do"
 		})
+
 	
 	</script>
 </body>
