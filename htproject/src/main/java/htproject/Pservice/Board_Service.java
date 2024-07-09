@@ -32,5 +32,6 @@ public class Board_Service {
 	
 	public String insertBoard(Board_info ins) {
 		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
+		
 	}
 }

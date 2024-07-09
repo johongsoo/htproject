@@ -3,6 +3,7 @@ package htproject.Pcontroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import htproject.P_vo.Board_info;
@@ -27,10 +28,11 @@ public class Board_Controller {
 		return "WEB-INF\\hongsoProject\\insertPage\\board_insert.jsp";
 	}
 
-	@RequestMapping("BoardInsert01.do")
+	@PostMapping("BoardInsert01.do")
 	public String insertBoard(Board_info ins, Model d) {
 		d.addAttribute("result", service.insertBoard(ins));
 		return "WEB-INF\\hongsoProject\\insertPage\\board_insert.jsp";
 	}	
+	
 	
 }

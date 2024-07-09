@@ -22,10 +22,10 @@ public interface Board_dao {
 			+ "where b_no = #{b_no}")
 	int uptb_Cnt(@Param("b_no") int b_no);
 	
-	@Insert("Insert into Board_info values(#{b_no},#{m_id},#{m_name},#{b_title},sysdate,#{b_cnt}),#{b_content}")
+	@Insert("Insert into board_info values(#{b_no},#{m_id},#{m_name},#{b_title},#{b_date},#{b_cnt},#{b_content})")
 	int insertBoard(Board_info ins);
 	
-	@Update("")
+
 }
 
 
