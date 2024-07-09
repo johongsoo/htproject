@@ -1,7 +1,6 @@
 package htproject.P_vo;
 
 
-import java.util.Date;
 
 public class Board_info {
 
@@ -19,7 +18,7 @@ public class Board_info {
 	}
 
 
-	public Board_info(int b_no, String m_id, String m_name, String b_title,String b_content ,String b_date) {
+	public Board_info(int b_no, String m_id, String m_name, String b_title,String b_content ,String b_date,int b_cnt) {
 		super();
 		this.b_no = b_no;
 		this.m_id = m_id;
@@ -27,6 +26,7 @@ public class Board_info {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_date = b_date;
+		this.b_cnt = b_cnt;
 
 	}
 	public int getB_no() {
@@ -72,6 +72,7 @@ public class Board_info {
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
+	
 
 	
 }

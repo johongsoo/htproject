@@ -233,17 +233,22 @@ a{
 
 
 
-
 .board_write .title input[type="text"],
-.board_write .info input[type="text"]{
+.board_write .info input[type="text"],
+.board_write .info input[type="date"]{
 	padding: 10px;
 	box-sizing: border-box;
 	width: calc(200% - 20px);
 }
 
+.board_write .title input[type="text"]{
+	width: calc(600% - 20px);
+}
+
 }
 .board_write .cont {
-	border-bottom: 1px solid #000;
+    
+	border-bottom: 2px solid #000;
 }
 
 .board_write .cont textarea {
@@ -252,7 +257,6 @@ a{
 	height : 500px;
 	padding : 15px;
 	box-sizing :border-box;
-	border:0;
 	resize:vertical;
 }
 
@@ -268,6 +272,8 @@ $(document).ready(function(){
 	if(result!=""){
 		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
 		//$("form")[0].reset()
+		$("[name=b_no]").val("0")
+		$("[name=b_content]").val("")
 	}
 });
 document.addEventListener('DOMContentLoaded', function() {
@@ -296,38 +302,31 @@ document.addEventListener('DOMContentLoaded', function() {
 	<form action="BoardInsert01.do" method="post"">
 		<div class="board_write">
 			<div class="info">	
-				 <dl>
-					<dt>번호</dt>
-					<dt><input type="text" name="b_no" value="" placeholder="번호"></dt>
-				</dl>
+				<input type="hidden" name="b_no" value="${empty param.b_no?'0':param.b_no}" placeholder="번호">
 				<dl>
 					<dt>아이디</dt>
 					<dt><input type="text" name="m_id" value="" placeholder="아이디"></dt>
 				</dl>
 			</div>	
-			<div class="title">
+			<div class="info">
 				<dl>
 					<dt>이름</dt>
 					<dt><input type="text" name="m_name" value="" placeholder="이름"></dt>
-				</dl>
-				<dl>
-					<dt>제목</dt>
-					<dt><input type="text" name="b_title" value="" placeholder="제목"></dt>
-				</dl>
-			</div>
-			<div class="info">
-				<dl>
-					<dt>조회수</dt>
-					<dt><input type="text" name="b_cnt" value="0" placeholder="조회수" readonly></dt>
 				</dl>
 				<dl>
 					<dt>날짜</dt>
 					<dt><input type="date" name="b_date" readonly></dt>
 				</dl>
 			</div>
+			<div class="title">
+				<dl>
+					<dt>제목</dt>
+					<dt><input type="text" name="b_title" value="" placeholder="제목"></dt>
+				</dl>
+			</div>
 
 			<div class="cont">
-				<textarea placeholder="내용입력" name="b_content"></textarea>
+				<textarea placeholder="내용입력" name="b_content">${param.b_content}</textarea>
 			</div>
 
 		</div>

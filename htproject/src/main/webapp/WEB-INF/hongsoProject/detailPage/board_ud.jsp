@@ -264,14 +264,15 @@ a{
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var result = "${result}"
-	if(result!=""){
-		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
-		$("[name=b_no]").val("0")
-		$("[name=b_title]").val("")
-		$("[name=b_content]").val("")
-		//$("form")[0].reset()
-	}
+		var msg = "${msg}"
+		if(msg!=""){
+			alert(msg)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
+			var proc = "${proc}"
+			if(proc == 'del'){
+				location.href="boardList.do"
+			}
+				
+		}
 });
 </script>
 </head>
@@ -285,38 +286,33 @@ $(document).ready(function(){
 		</div>
 	<form action="BoardInsert01.do" method="post"">
 		<div class="board_write">
-			<div class="info">	
-				 <dl>
-					<dt>번호</dt>
-					<dt><input type="text" name="b_no" value="${param.b_no}" placeholder="번호"></dt>
-				</dl>
-			</div>	
-			<div class="title">
-				<dl>
-					<dt>제목</dt>
-					<dt><input type="text" name="b_title" value="${param.b_title}" placeholder="제목"></dt>
-				</dl>
-			</div>
+				<input type="text" name="b_no" value="${boardinfo2.b_no}" placeholder="번호" readonly>
+                <input type="text" name="m_id" value="${boardinfo2.m_id }" placeholder="아이디" readonly>
+                <input type="text" name="b_date" value="${boardinfo2.b_date}" readonly>
+                <input type="text" name="b_cnt" value="${boardinfo2.b_cnt}" readonly>
 			<div class="info">
 				<dl>
 					<dt>이름</dt>
-					<dt><input type="text" name="m_name" value="${param.m_name}" placeholder="이름"></dt>
+					<dt><input type="text" name="m_name" value="${boardinfo2.m_name}" placeholder="이름" readonly></dt>
 				</dl>
+			</div>
+			<div class="title">
 				<dl>
-					<dt>조회수</dt>
-					<dt><input type="text" name="b_cnt" value="${param.b_cnt}" placeholder="조회수"></dt>
+					<dt>제목</dt>
+					<dt><input type="text" name="b_title" value="${boardinfo2.b_title}" placeholder="제목"></dt>
 				</dl>
 			</div>
 
 			<div class="cont">
-				<textarea placeholder="내용입력" name="b_content" value="${param.b_content}" ></textarea>
+				<textarea placeholder="내용입력" name="b_content">${boardinfo2.b_content}</textarea>
 			</div>
 
 		</div>
 		
 		
 		<div class="bt_wrap">
-			<button type="submit" id="insBtn" class="insBtn">등록</button>
+			<button type="submit" id="uptBtn" class="insBtn">수정</button>
+			<button type="submit" id="delBtn" class="insBtn">수정</button>
 			<button type="button" id="clsBtn" class="btn">취소</button>
 		</div>
 	</form>	
@@ -324,11 +320,16 @@ $(document).ready(function(){
 		<script type="text/javascript">
 
 
-		$("#insBtn").click(function(){
-			if(confirm("등록하시겠습니까?")){
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				// boardUpdate.do boardDelete.do
+				$("form").attr("action","updateBoardinfo.do");
 				$("form").submit()
 			}
 		})
+		$("#delBtn").click(function(){
+			location.href="deleteBoardinfo.do?b_no="+$("[name=b_no]").val();
+		})		
 		$("#clsBtn").click(function(){
 			location.href="Boardlist.do"
 		})

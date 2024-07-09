@@ -221,7 +221,7 @@
 				<div class="views">조회수</div>
 			</div>
 		<c:forEach var="b" items="${blist}">
-			<div class="hover" ondblclick="detail(b_no)" id="list">
+			<div class="hover" ondblclick="detail(${b.b_no})" id="list">
 				<div class="no">${b.b_no}</div>
 				<div class="title">${b.b_title}</div>
 				<div class="writer">${b.m_name}</div>>
@@ -239,7 +239,7 @@
 	<script type="text/javascript">
 	
 		function detail(b_no){
-			location.href="getTrain.do?b_no="+b_no
+			location.href="getBoardinfo.do?b_no="+b_no
 		}
 	</script>
 

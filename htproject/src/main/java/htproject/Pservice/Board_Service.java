@@ -34,4 +34,22 @@ public class Board_Service {
 		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
 		
 	}
+	
+	public Board_info getBoardinfo(int b_no ) {
+		return dao.getBoardinfo(b_no);
+	}
+	
+	public Board_info getBoardinfo2(int b_no ) {
+		return dao.getBoardinfo2(b_no);
+	}
+	
+	public String updateBoardinfo(Board_info upt) {
+		return dao.updateBoardinfo(upt)>0?"수정성공":"수정실패";
+	}
+	
+	public String deleteBoardinfo(int b_no) {
+		return dao.deleteBoardinfo(b_no)>0?"삭제성공":"삭제실패";
+	}
+
+	
 }

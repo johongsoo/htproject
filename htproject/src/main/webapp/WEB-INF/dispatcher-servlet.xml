@@ -34,7 +34,11 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		
 	</context:component-scan>  
+	
+
+	
 	
 	<!--  공통 설정 파일 등록 -->
 	<context:property-placeholder
@@ -65,6 +69,7 @@
 	 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="htproject.Pdao" />
+		
 	</bean> 
 	  
 	<!-- 라이브러리 추가 -->
