@@ -1,5 +1,8 @@
 package htproject.Pcontroller;
 
+import java.lang.System.Logger;
+
+import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,15 +47,15 @@ public class Board_Controller {
 	
 	@GetMapping("getBoardinfo2.do")
 	public String getBoardinfo2(@RequestParam("b_no") int b_no, Model d) {
-		d.addAttribute("boardinfo1", service.getBoardinfo2(b_no));
+		d.addAttribute("boardinfo2", service.getBoardinfo2(b_no));
 		return "WEB-INF\\hongsoProject\\detailPage\\board_ud.jsp";
 	}
 	
 	@RequestMapping("updateBoardinfo.do")
 	public String updateBoardinfo(Board_info upt, Model d) {
 		d.addAttribute("msg", service.updateBoardinfo(upt));
-		d.addAttribute("boardinfo", service.getBoardinfo(upt.getB_no()));
-		return "WEB-INF\\hongsoProject\\detailPage\\board_ud.jsp";
+		d.addAttribute("boardinfo2", service.getBoardinfo2(upt.getB_no()));
+		return "WEB-INF\\hongsoProject\\detailPage\\board_ud.jsp";     
 	}
 	
 	@GetMapping("deleteBoardinfo.do")
@@ -61,4 +64,7 @@ public class Board_Controller {
 		d.addAttribute("proc", "del");
 		return "WEB-INF\\hongsoProject\\detailPage\\board_ud.jsp";
 	}
+
+
+
 }

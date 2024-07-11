@@ -27,19 +27,18 @@ public interface Board_dao {
 	Board_info getBoardinfo(@Param("b_no") int b_no );	
 	
 	@Select("select * from Board_info where b_no = #{b_no}")
-	Board_info getBoardinfo2(@Param("b_no") int b_no );
+	Board_info getBoardinfo2(@Param("b_no") int b_no );	
 	
-	@Insert("Insert into board_info values(board_seq.nextval,#{m_id},#{m_name},#{b_title}, \r\n"
+	
+	@Insert("Insert into board_info values(board_seq.nextval,#{m_name},#{b_title}, \r\n"
 			+ " #{b_date},#{b_content}, #{b_cnt}) ")
 	int insertBoard(Board_info ins);
 	
 	@Update("	UPDATE Board_info \r\n"
-			+ "	SET m_id = #{m_id},\r\n"
-			+ "	    m_name = #{m_name},\r\n"
-			+ "	    b_title = #{b_title}\r\n"
-			+ "	    b_date = #{b_date}\r\n"
-			+ "	    b_date = #{b_date}\r\n"
-			+ "	    b_content = #{b_content}\r\n"
+			+ "	SET m_name = #{m_name},\r\n"
+			+ "	    b_title = #{b_title},\r\n"
+			+ "	    b_date = #{b_date},\r\n"
+			+ "	    b_content = #{b_content},\r\n"
 			+ "	    b_cnt = #{b_cnt}\r\n"
 			+ "WHERE b_no = #{b_no}")
 	int updateBoardinfo(Board_info upt);
@@ -48,8 +47,6 @@ public interface Board_dao {
 			+ "WHERE b_no = #{b_no}")
 	int deleteBoardinfo(@Param("b_no") int b_no);	
 
-	@Insert("INSERT INTO example_table (column1, column2) VALUES (#{param1,jdbcType=VARCHAR}, #{param2,jdbcType=INTEGER})")
-	void insertExample(@Param("param1") String param1, @Param("param2") Integer param2);
 }
 
 

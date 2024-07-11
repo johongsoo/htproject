@@ -6,7 +6,6 @@ public class Board_info {
 
 	
 	private int b_no;
-	private String m_id;
 	private String m_name;
 	private String b_title;
 	private String b_content;
@@ -18,10 +17,9 @@ public class Board_info {
 	}
 
 
-	public Board_info(int b_no, String m_id, String m_name, String b_title,String b_content ,String b_date,int b_cnt) {
+	public Board_info(int b_no, String m_name, String b_title,String b_content ,String b_date,int b_cnt) {
 		super();
 		this.b_no = b_no;
-		this.m_id = m_id;
 		this.m_name = m_name;
 		this.b_title = b_title;
 		this.b_content = b_content;
@@ -35,12 +33,7 @@ public class Board_info {
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
 	}
-	public String getM_id() {
-		return m_id;
-	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
+
 	public String getM_name() {
 		return m_name;
 	}
