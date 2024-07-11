@@ -270,12 +270,12 @@ a{
 $(document).ready(function(){
 	var result = "${result}"
 	if(result!=""){
-		alert(result)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
-		//$("form")[0].reset()
-		$("[name=b_no]").val("0")
-		$("[name=b_content]").val("")
+		alert(result)  
+		location.href="Boardlist.do"
 	}
 });
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // 현재 날짜 가져오기
     var today = new Date();
@@ -301,13 +301,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div>
 	<form action="BoardInsert01.do" method="post"">
 		<div class="board_write">
-			<div class="info">	
+
 				<input type="hidden" name="b_no" value="${empty param.b_no?'0':param.b_no}" placeholder="번호">
-				<dl>
-					<dt>아이디</dt>
-					<dt><input type="text" name="m_id" value="" placeholder="아이디"></dt>
-				</dl>
-			</div>	
+
 			<div class="info">
 				<dl>
 					<dt>이름</dt>
@@ -343,6 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if(confirm("등록하시겠습니까?")){
 				$("form").submit()
 			}
+			
 		})
 		$("#clsBtn").click(function(){
 			alert("게시판으로 이동")

@@ -189,7 +189,7 @@
         $(document).ready(function(){
  
             $("#insBtn").click(function(){
-            	alert("배차 등록 페이지로이동.");
+            	alert("게시글 등록 페이지로이동.");
                  location.href="BoardInsert.do"
             });
 	});
@@ -216,7 +216,7 @@
 			<div class="top">
 				<div class="no">글번호</div>
 				<div class="title">제목</div>
-				<div class="writer">작성자</div>>
+				<div class="writer">작성자</div>
 				<div class="date">등록일</div>
 				<div class="views">조회수</div>
 			</div>

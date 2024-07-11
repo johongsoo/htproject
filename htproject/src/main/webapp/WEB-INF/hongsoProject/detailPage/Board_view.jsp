@@ -257,6 +257,14 @@ a{
 	line-height: 160%;
 }
 
+#mainBtn{
+	background-color:black;
+}
+
+#delBtn{
+	background-color:red;
+}
+
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -266,39 +274,39 @@ a{
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#modalFrm").on("keydown", function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			return false;
+		}
+	})
+	
+	
 	$("#mainBtn").click(function(){
 		location.href="Boardlist.do"
 	})
+	$("#update").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				$("#modalFrm").submit()
+			}
+			
+	})
+	
 	var msg = "${msg}"
+	var proc = "${proc}"
 		if(msg!=""){
-			alert(msg)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
-			var proc = "${proc}"
+			alert(msg)  
 			if(proc == 'del'){
+				alert("게시판으로 이동")
 				location.href="Boardlist.do"
 		}
 				
 }
-});
-var articleNo = 40;
-getReplies();
 
-function getReplies(){
-$.getJSON("/replises/all/"+articleNo, function(data){
-	console.log(data);
-	var str = "";
 	
-	$(data).each(function(){
-		str += "<li data-replyNo='"+ this.replyNo + "' class='replyLi>"
-		+ "<p class='replyText'>" + this.replyText + "</p>"
-		+ "<p class='replyWriter'>" + this.replyWriter + "</p>"
-		+ "<button type='button' class='btn btn-xs btn-success' data-goggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-		+"</li>"
-		+"<hr/>";
-	});
-	
-	$("#replies").html(str);
 });
-}
+
+
 </script>
 <body>
 <div class="board_wrap">
@@ -312,39 +320,39 @@ $.getJSON("/replises/all/"+articleNo, function(data){
 		
 			<div class="title">
 				<dt>${boardinfo.b_title}</dt>
-				<input type="hidden" name="title" value="${boardinfo.b_title}">
-				<input type="hidden" name="b_cnt" value="${boardinfo.b_cnt}">
-				<input type="hidden" name="m_id" value="${boardinfo.m_id}">
+				<input type="hidden" name="title" value="${param.b_title}">
+				<input type="hidden" name="b_cnt" value="${param.b_cnt}">
 			</div>
 			<div class="info">
 				<dl>
 					<dt>번호</dt>
 					<dt>${boardinfo.b_no}</dt>
-					<input type="hidden" name="b_no" value="${boardinfo.b_no}" readonly>
+					<input type="hidden" name="b_no" value="${param.b_no}" readonly>
 				</dl>
 				<dl>
 					<dt>글쓴이</dt>
 					<dt>${boardinfo.m_name}</dt>
-					<input type="hidden" name="m_name" value="${boardinfo.m_name}" readonly>
+					<input type="hidden" name="m_name" value="${param.m_name}" readonly>
 				</dl>
 				<dl>
 					<dt>작성일</dt>
 					<dt>${boardinfo.b_date}</dt>
-					<input type="hidden" name="b_date" value="${boardinfo.b_date}" readonly>
+					<input type="hidden" name="b_date" value="${param.b_date}" readonly>
 				</dl>
 			</div>
 			<div class="cont">
 				<dt>
 				${boardinfo.b_content}
 				</dt>
-				<input type="hidden" name="b_content" value="${boardinfo.b_content}">
+				<input type="hidden" name="b_content" value="${param.b_content}">
 			</div>
 		</div>
 		
 		<div class="bt_wrap">
-			<button type="button" id="mainBtn" class="main">목록</button>
-			<button type="button" id="uptBtn">수정</button>
-			<button type="button" id="delBtn" >삭제</button>
+			<button type="button" id="mainBtn" class="btn btn-xs btn-success">목록</button>
+			<button type="button" class="btn btn-xs btn-success" data-toggle="modal"
+					data-target="#modifyModal">수정</button>
+			<button type="button" class="btn btn-xs btn-success" id="delBtn" >삭제</button>
 		</div>
 	</form>
 	<section class="content container-flluid">
@@ -379,44 +387,53 @@ $.getJSON("/replises/all/"+articleNo, function(data){
 		</div>
 		
 		<div class="modal fade" id="modifyModal" role="dialog">
-			<div class="modal">
+			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">댓글 수정창</h4>
+						<h4 class="modal-title">게시글 수정</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>				
 					</div>
+					<form id="modalFrm" method="post" action="updateBoardinfo.do">
 					<div class=modal-body">
 						<div class="form-group">
-							<label for="replyNo">댓글 번호</label>
-							<input class="form-control" id="replyNo" name="replyNo" readonly>
+							<label for="boardinfo.b_no">번호</label>
+							<input class="form-control" id="boardinfo.b_no" name="b_no" value="${boardinfo.b_no}" readonly>
+							<label for="boardinfo.m_name">글쓴이</label>
+							<input class="form-control" id="boardinfo.m_name" name="m_name" value="${boardinfo.m_name}" readonly>
 						</div>
 						<div class="form-group">
-							<label for="replyText">댓글 내용</label>
-							<input class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력해주세요">
+							<label for="boardinfo.b_title">제목</label>
+							<input class="form-control" id="boardinfo.b_title" value="${boardinfo.b_title}" name="b_title">
+							<label for="boardinfo.b_date">등록일</label>
+							<input class="form-control" id="boardinfo.b_date" name="b_date" value="${boardinfo.b_date}" readonly>
 						</div>
 						<div class="form-group">
-							<label for="replyWriter">댓글 작성자</label>
-							<input class="form-control" id="replyWriter" name="replyWriter" readonly>
+							<label for="boardinfo.b_content">내용</label>
+							<textarea class="form-control" id="boardinfo.b_content" name="b_content">
+							${boardinfo.b_content}
+							</textarea>
+							<input type="hidden" name="b_cnt" value="${boardinfo.b_cnt}">
 						</div>
+					
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default pull-left" data-dimiss="modal">닫기</button>
-						<button type="button" class="btn btn-success modalModBtn">수정</button>
-						<button type="button" class="btn btn-danger modalDelBtn">삭제</button>
+						<button type="submit" class="btn btn-success modalModBtn" id="update">수정</button>
 					</div>
-
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
 	</div>
 	<script type="text/javascript">
-	 $("#uptBtn").click(function(){
-	        location.href = "updateBoardinfo.do?b_no=" + $("[name=b_no]").val();
-	 });
-		$("#delBtn").click(function(){
-			location.href="deleteBoardinfo.do?b_no="+$("[name=b_no]").val();
-		})	
+	$("#update").click(function(){
+		location.href="updateBoardinfo.do?b_no="+$("[name=b_no]").val();
+	})
+	
+	$("#delBtn").click(function(){
+		location.href="deleteBoardinfo.do?b_no="+$("[name=b_no]").val();
+	})	
 	
 	</script>
 </div>

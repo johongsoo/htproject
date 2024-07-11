@@ -266,13 +266,18 @@ a{
 $(document).ready(function(){
 		var msg = "${msg}"
 		if(msg!=""){
-			alert(msg)  // 등록 성공 alert()로딩 : 모델 데이터를 받아서..
+			alert(msg)  
 			var proc = "${proc}"
 			if(proc == 'del'){
-				location.href="boardList.do"
+				location.href="Boardlist.do"
 			}
 				
 		}
+		var result = "${result}"
+			if(result!=""){
+				alert(result)  
+			
+	    }
 });
 </script>
 </head>
@@ -284,52 +289,50 @@ $(document).ready(function(){
 				<p>고객님들의 문의 사항을 자유롭게 남겨주세요
 				친절히 순차적으로 답변드리겠습니다.</p>
 		</div>
-	<form action="BoardInsert01.do" method="post"">
+	<form action="updateBoardinfo.do" method="post">
 		<div class="board_write">
-				<input type="text" name="b_no" value="${boardinfo2.b_no}" placeholder="번호" readonly>
-                <input type="text" name="m_id" value="${boardinfo2.m_id }" placeholder="아이디" readonly>
-                <input type="text" name="b_date" value="${boardinfo2.b_date}" readonly>
-                <input type="text" name="b_cnt" value="${boardinfo2.b_cnt}" readonly>
+
 			<div class="info">
+				<dl>
+					<dt>번호</dt>
+					<dt><input type="text" name="b_no" value="${boardinfo2.b_no}" placeholder="번호" readonly></dt>
+				</dl>
 				<dl>
 					<dt>이름</dt>
 					<dt><input type="text" name="m_name" value="${boardinfo2.m_name}" placeholder="이름" readonly></dt>
 				</dl>
-			</div>
-			<div class="title">
+              </div>
+             <div class="title">
 				<dl>
 					<dt>제목</dt>
 					<dt><input type="text" name="b_title" value="${boardinfo2.b_title}" placeholder="제목"></dt>
 				</dl>
 			</div>
+			<div class="info">
+				<dl>
+					<dt>등록일</dt>
+					<dt><input type="text" name="b_date" value="${boardinfo2.b_date}" placeholder="등록일" readonly></dt>
+				</dl>
+			</div>
+
 
 			<div class="cont">
 				<textarea placeholder="내용입력" name="b_content">${boardinfo2.b_content}</textarea>
 			</div>
+			 <input type="text" name="b_cnt" value="${boardinfo2.b_cnt}" readonly>
 
 		</div>
 		
 		
 		<div class="bt_wrap">
 			<button type="submit" id="uptBtn" class="insBtn">수정</button>
-			<button type="submit" id="delBtn" class="insBtn">수정</button>
+			<button type="button" id="delBtn" class="insBtn">삭제</button>
 			<button type="button" id="clsBtn" class="btn">취소</button>
 		</div>
 	</form>	
 	</div>
 		<script type="text/javascript">
-
-
-		$("#uptBtn").click(function(){
-			if(confirm("수정하시겠습니까?")){
-				// boardUpdate.do boardDelete.do
-				$("form").attr("action","updateBoardinfo.do");
-				$("form").submit()
-			}
-		})
-		$("#delBtn").click(function(){
-			location.href="deleteBoardinfo.do?b_no="+$("[name=b_no]").val();
-		})		
+	
 		$("#clsBtn").click(function(){
 			location.href="Boardlist.do"
 		})
