@@ -11,4 +11,9 @@ public class JoinMember {
 	public String Joinfirst() {
 		return "WEB-INF\\hongsoProject\\joinMembership\\firstPage.jsp";
 	}
+	
+	@RequestMapping("secondPage.do")
+	public String secondPage() {
+		return "WEB-INF\\hongsoProject\\joinMembership\\secondPage.jsp";
+	}
 }
