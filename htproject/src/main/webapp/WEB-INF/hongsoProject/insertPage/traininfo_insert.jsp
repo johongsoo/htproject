@@ -278,6 +278,7 @@ $(document).ready(function(){
 			if(confirm("등록하시겠습니까?")){
 				$("form").submit()
 			}
+			
 		})
 		$("#clsBtn").click(function(){
 			alert("이동");
@@ -287,7 +288,7 @@ $(document).ready(function(){
 		var result = "${result}"
 			if(result!=""){
 			alert(result)
-		
+			location.href="traininfolist.do";
 		}
 </script>
 </head>
